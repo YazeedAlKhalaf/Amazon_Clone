@@ -6,7 +6,9 @@ import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
 
 function Header() {
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [state, dispatch] = useStateValue();
+  const basket = state?.basket;
+  const user = state?.user;
 
   const handleAuthentication = () => {
     if (user) {
@@ -33,7 +35,9 @@ function Header() {
         <Link to={user === null ? `/login` : null}>
           <div onClick={handleAuthentication} className="header__option">
             <span className="header__optionLineOne">
-              {user === null ? `Hello Guest` : `Hi ${user.email.split("@")[0]}`}
+              {user === null
+                ? `Hello Guest`
+                : `Hi ${user?.email.split("@")[0]}`}
             </span>
             <span className="header__optionLineTwo">
               {user === null ? `Sign in` : `Sign Out`}
@@ -41,10 +45,12 @@ function Header() {
           </div>
         </Link>
 
-        <div className="header__option">
-          <span className="header__optionLineOne">Returns</span>
-          <span className="header__optionLineTwo">& Orders</span>
-        </div>
+        <Link to="/orders">
+          <div className="header__option">
+            <span className="header__optionLineOne">Returns</span>
+            <span className="header__optionLineTwo">& Orders</span>
+          </div>
+        </Link>
 
         <div className="header__option">
           <span className="header__optionLineOne">Your</span>

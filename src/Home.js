@@ -40,7 +40,7 @@ function Home() {
           <Product
             id={`79015545423`}
             title="Lambo for sale | Contact my Sercretary for more info!"
-            price={50000000.98}
+            price={999999.99}
             imageUrl={`https://images.outlookindia.com/public/uploads/articles/2019/2/16/lambo_1_20190216_571_855.jpg`}
             rating={3}
           />

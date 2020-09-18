@@ -4,13 +4,8 @@ export const initialState = {
 };
 
 // Selector
-export const getBasketTotal = (basket) => {
-  var basketTotal = 0;
-  basket.forEach((basketItem) => {
-    basketTotal += basketItem.price;
-  });
-  return basketTotal;
-};
+export const getBasketTotal = (basket) =>
+  basket?.reduce((amount, basketItem) => basketItem.price + amount, 0);
 
 const reducer = (state, action) => {
   console.log(action);
@@ -42,6 +37,11 @@ const reducer = (state, action) => {
         ...state,
         user: action.user,
       };
+    // case "EMPTY_BASKET":
+    //   return {
+    //     ...state,
+    //     basket: [],
+    //   };
   }
 };
 
